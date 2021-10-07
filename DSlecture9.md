@@ -110,3 +110,75 @@ weather_df %>%
     ## Warning: Removed 15 rows containing missing values (geom_point).
 
 ![](DSlecture9_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+## scale
+
+start with the same plot
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point( alpha = 0.5) +
+  labs(
+    title = "t plot",
+    x = "minimun daily(C)", 
+    y = "maximum daily (C)",
+    caption = "data from package"
+  ) +
+  scale_x_continuous(
+    breaks = c(-15, 0, 15),
+    labels = c("-15c", "0", "15C")
+  ) +
+  scale_y_continuous(
+    trans = "sqrt",
+    position ="right"
+  )
+```
+
+    ## Warning in self$trans$transform(x): NaNs produced
+
+    ## Warning: Transformation introduced infinite values in continuous y-axis
+
+    ## Warning: Removed 90 rows containing missing values (geom_point).
+
+![](DSlecture9_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+color scales
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point( alpha = 0.5) +
+  labs(
+    title = "t plot",
+    x = "minimun daily(C)", 
+    y = "maximum daily (C)",
+    caption = "data from package"
+  ) +
+  scale_color_hue(
+    name = "Location",
+    h = c(100, 200))
+```
+
+    ## Warning: Removed 15 rows containing missing values (geom_point).
+
+![](DSlecture9_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point( alpha = 0.5) +
+  labs(
+    title = "t plot",
+    x = "minimun daily(C)", 
+    y = "maximum daily (C)",
+    caption = "data from package"
+  ) +
+  viridis::scale_color_viridis(
+    name = "location",
+    discrete = TRUE)
+```
+
+    ## Warning: Removed 15 rows containing missing values (geom_point).
+
+![](DSlecture9_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
