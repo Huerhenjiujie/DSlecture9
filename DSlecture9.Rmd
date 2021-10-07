@@ -108,4 +108,43 @@ weather_df %>%
 
 ```
 
+## themes
 
+shift the legend
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point( alpha = 0.5) +
+  labs(
+    title = "t plot",
+    x = "minimun daily(C)", 
+    y = "maximum daily (C)",
+    caption = "data from package"
+  ) +
+  viridis::scale_color_viridis(
+    name = "location",
+    discrete = TRUE) +
+  theme(legend.position = "bottom")
+```
+
+change the overall theme
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point( alpha = 0.5) +
+  labs(
+    title = "t plot",
+    x = "minimun daily(C)", 
+    y = "maximum daily (C)",
+    caption = "data from package"
+  ) +
+  viridis::scale_color_viridis(
+    name = "location",
+    discrete = TRUE) +
+  ggthemes::theme_economist()
+
+#theme_minimal, theme_classic, theme_bw
+# theme(legend) at last , or overide
+```

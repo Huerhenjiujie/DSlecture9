@@ -182,3 +182,54 @@ weather_df %>%
     ## Warning: Removed 15 rows containing missing values (geom_point).
 
 ![](DSlecture9_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+## themes
+
+shift the legend
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point( alpha = 0.5) +
+  labs(
+    title = "t plot",
+    x = "minimun daily(C)", 
+    y = "maximum daily (C)",
+    caption = "data from package"
+  ) +
+  viridis::scale_color_viridis(
+    name = "location",
+    discrete = TRUE) +
+  theme(legend.position = "bottom")
+```
+
+    ## Warning: Removed 15 rows containing missing values (geom_point).
+
+![](DSlecture9_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+change the overall theme
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point( alpha = 0.5) +
+  labs(
+    title = "t plot",
+    x = "minimun daily(C)", 
+    y = "maximum daily (C)",
+    caption = "data from package"
+  ) +
+  viridis::scale_color_viridis(
+    name = "location",
+    discrete = TRUE) +
+  ggthemes::theme_economist()
+```
+
+    ## Warning: Removed 15 rows containing missing values (geom_point).
+
+![](DSlecture9_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+``` r
+#theme_minimal, theme_classic, theme_bw
+# theme(legend) at last , or overide
+```
