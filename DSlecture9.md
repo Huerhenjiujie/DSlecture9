@@ -324,3 +324,39 @@ tmax_tmin / ( prcp_dens_p + tmax_date)
     ## Warning: Removed 3 rows containing missing values (geom_point).
 
 ![](DSlecture9_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+
+## data manipulation
+
+control factor
+
+``` r
+weather_df %>% 
+  mutate(
+    name = factor(name),
+    name = forcats::fct_relevel(name, c("Waikiki_HA"))
+  ) %>% 
+  ggplot(aes(x = name, y = tmax, fill = name)) +
+  geom_violin(alpha = .5)
+```
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_ydensity).
+
+![](DSlecture9_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+
+density for tmax, tmin
+
+``` r
+weather_df %>% 
+  pivot_longer(
+    tmax:tmin,
+    names_to = "observation",
+    values_to = "temperature"
+  ) %>% 
+  ggplot(aes(x = temperature, fill = observation)) +
+  geom_density(alpha = 0.5) +
+  facet_grid(.~name)
+```
+
+    ## Warning: Removed 18 rows containing non-finite values (stat_density).
+
+![](DSlecture9_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
